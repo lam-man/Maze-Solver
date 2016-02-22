@@ -2,18 +2,18 @@
 import java.awt.*;
 import javax.swing.*;
 
-/* Visualize is a class used to visualize the path of robot,
- * Red: obstacles;
- * White: availables;
- * Green: path robot choose.
+/** Visualize is a class used to visualize the path of robot,
+ *  Red: obstacles;
+ *  White: availables;
+ *  Green: path robot choose.
  */
 class Visualize extends JFrame {
   JPanel panel;
   int size = 900;
   JButton buttons[] = new JButton[900];
-  grid maze;
+  Grid maze;
 
-  public Visualize(grid input) {
+  public Visualize(Grid input) {
     this.maze = input;
     setSize(600, 600);
     panel = new JPanel();
@@ -22,7 +22,7 @@ class Visualize extends JFrame {
       buttons[i] = new JButton();
       int y = i / 30;
       int x = i % 30;
-      position temp = new position(x, y);
+      Position temp = new Position(x, y);
       if (this.maze.getValue(temp) == 0) {
         buttons[i].setBackground(Color.red);
         buttons[i].setOpaque(true);
@@ -43,7 +43,7 @@ class Visualize extends JFrame {
 
   
   public static void main(String args[]) {
-    grid newGrid = new grid(30, 30, 30, 0, 0, 29, 29);
+    Grid newGrid = new Grid(30, 30, 30, 0, 0, 29, 29);
     Visualize sol = new Visualize(newGrid);
   }
     

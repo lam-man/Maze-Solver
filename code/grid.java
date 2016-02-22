@@ -3,12 +3,12 @@
 import java.io.*;
 import java.util.Random;
 
-class grid {
+class Grid {
   protected int width;
   protected int height;
   protected int[][] board;
-  protected position start;
-  protected position dest;
+  protected Position start;
+  protected Position dest;
   protected int obsPercent;
 
   /* constructor to generate a grid
@@ -16,21 +16,21 @@ class grid {
   * @param - int height, height of game board, row of the 2-D vector
   * @return - return a game board
   **/
-  public grid(int width, int height, int obsPercent,
+  public Grid(int width, int height, int obsPercent,
               int startX, int startY,
               int destX, int destY) {
     this.width = width;
     this.height = height;
     this.obsPercent = obsPercent;
     this.board = new int[width][height];
-    this.start = new position(startX, startY);
-    this.dest = new position(destX, destY);
+    this.start = new Position(startX, startY);
+    this.dest = new Position(destX, destY);
     this.gridInitializer();
-    this.obstacleCreator(this.obsPercent);
+    this.obstacleCreator(obsPercent);
   }
 
   /* default constructor without parameter */ 
-  public grid() {
+  public Grid() {
     this(30, 30, 30, 0, 0, 29, 29);
   }
     
@@ -40,9 +40,9 @@ class grid {
    */
   public void gridInitializer() {
       
-    for (int row=0; row<this.height; row++) {
-      for (int col=0; col<this.width; col++) {
-        this.board[col][row] = 1;
+    for (int row=0; row<height; row++) {
+      for (int col=0; col<width; col++) {
+        board[col][row] = 1;
       }
     }
   }
@@ -53,15 +53,15 @@ class grid {
    **/
   public void obstacleCreator(int obsPercent) {
     Random rand = new Random();
-    int obsNum = (this.height * this.width * obsPercent) / 100;
+    int obsNum = (height * width * obsPercent) / 100;
     for (int count=0; count < obsNum;) {
       int obsY = rand.nextInt(height);  // row of obstacle
       int obsX = rand.nextInt(width);   // height of obstacle
-      position noOverlay = new position(obsX, obsY);
+      Position noOverlay = new Position(obsX, obsY);
 
-      if (this.board[obsX][obsY] != 0 &&
+      if (board[obsX][obsY] != 0 &&
           !noOverlay.equal(start) && !noOverlay.equal(dest)) {
-        this.board[obsX][obsY] = 0;
+        board[obsX][obsY] = 0;
         count++;
       }
     }   
@@ -72,17 +72,17 @@ class grid {
    * @indexPos position used to index
    * @return value in the index position
    **/
-  public int getValue(position indexPos) {
+  public int getValue(Position indexPos) {
     int col = indexPos.x;
     int row = indexPos.y;
-    return this.board[col][row];
+    return board[col][row];
   }
 
   // Print the maze grid.
   public void printGrid() {
-    for (int i=0; i<this.height; i++) {
-      for (int j=0; j<this.width; j++) {
-        System.out.print(this.board[j][i] + " ");
+    for (int i=0; i<height; i++) {
+      for (int j=0; j<width; j++) {
+        System.out.print(board[j][i] + " ");
       }
       System.out.print("\n");
     }
@@ -101,11 +101,11 @@ class grid {
     int startY = 0;
     int destX = 0;
     int destY = 0;
-    grid newGrid = new grid();
+    Grid newGrid = new Grid();
 
     // Create grid
     if (args.length==0) {
-      newGrid = new grid();
+      newGrid = new Grid();
     } else if (args.length != 7) {
       System.out.println("Wrong number of arguments:width, height, " +
                          "number of obstacles, startx, startY, destX, and destY");
@@ -119,7 +119,7 @@ class grid {
       destX = Integer.parseInt(args[5]);
       destY = Integer.parseInt(args[6]);
       
-      newGrid = new grid(gridWidth, gridHeight, obsPercent, startX, startY, destX, destY);
+      newGrid = new Grid(gridWidth, gridHeight, obsPercent, startX, startY, destX, destY);
     }
 
     newGrid.printGrid();
