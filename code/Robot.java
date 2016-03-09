@@ -2,17 +2,17 @@
 
 import java.util.LinkedList;
 
-/* moveDirection is a class used to decide the directions,
- * including left, front, right, a robot can move.
- * Directions are decided according to the input angle.
+/** moveDirection is a class used to decide the directions,
+ *  including left, front, right, a robot can move.
+ *  Directions are decided according to the input angle.
  */
 class MoveDirection {
   protected Position left;
   protected Position front;
   protected Position right;
 
-  /* dirUpdate(int angle): Update the directions according to the angle.
-   * @param int angle, input angle
+  /** dirUpdate(int angle): Update the directions according to the angle.
+   *  @param int angle, input angle
    */
   public void dirUpdate(int angle) {
     switch (angle) {
@@ -207,8 +207,6 @@ class Robot {
       finalGrid = discovery.mazeGrid;
       sol = new Visualize(finalGrid);
       runFlag = false;
-      //return this.finalGrid;
-      //System.exit(0);
       return;
     }
 
@@ -224,8 +222,6 @@ class Robot {
       finalGrid = discovery.mazeGrid;
       sol = new Visualize(finalGrid);
       runFlag = false;
-      //return this.finalGrid;
-      //System.exit(0);
       return;
     }
 
@@ -283,7 +279,7 @@ class Robot {
       pathFinder();
     }
 
-    // case 10: the cell has no choice but go back, then go back
+    // case 10: robot has no choice but go back, then go back
     if (runFlag && path.size() > 1 && discovery.allEmpty() && angleCounter == 7) {
       path.removeLast();
       currentPos.assign(path.getLast());
@@ -299,12 +295,7 @@ class Robot {
   public static void main(String[] args) {
     Robot mazeRunner = new Robot(30, 30, 40, 0, 0, 29, 29);
     mazeRunner.discovery.mazeGrid.printGrid();
-    // mazeRunner.pathFinder();
     mazeRunner.pathFinder();
-    //System.exit(0);
-    //Visualize sol = new Visualize(finalGrid);
-    //sol.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    //sol.setTitle("Maze runner path."); 
   } 
 }
 

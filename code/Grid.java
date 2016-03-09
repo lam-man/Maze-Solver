@@ -11,11 +11,11 @@ class Grid {
   protected Position dest;
   protected int obsPercent;
 
-  /* constructor to generate a grid
-  * @param - int width, width of game board, column of the 2-D vector
-  * @param - int height, height of game board, row of the 2-D vector
-  * @return - return a game board
-  **/
+  /** constructor to generate a grid
+   *  @param - int width, width of game board, column of the 2-D vector
+   *  @param - int height, height of game board, row of the 2-D vector
+   * @return - return a game board
+   */
   public Grid(int width, int height, int obsPercent,
               int startX, int startY,
               int destX, int destY) {
@@ -34,9 +34,9 @@ class Grid {
     this(30, 30, 30, 0, 0, 29, 29);
   }
     
-  /* boardInitializer(): initialize the input all cells
-   * in the game board (2-D vector) to 1, which means available.  
-   * @param - int[][] gameBoard, 2-D vector game board. 
+  /** boardInitializer(): initialize the input all cells
+   *  in the game board (2-D vector) to 1, which means available.  
+   *  @param - int[][] gameBoard, 2-D vector game board. 
    */
   public void gridInitializer() {
       
@@ -47,10 +47,10 @@ class Grid {
     }
   }
 
-  /* obstacleCreator(int obstacleNum) creates certain
-   * number of obstacles in the game board.
-   * @param int obstacleNum, number of obstacles to create
-   **/
+  /** obstacleCreator(int obstacleNum) creates certain
+   *  number of obstacles in the game board.
+   *  @param int obstacleNum, number of obstacles to create
+   */
   public void obstacleCreator(int obsPercent) {
     Random rand = new Random();
     int obsNum = (height * width * obsPercent) / 100;
@@ -67,11 +67,11 @@ class Grid {
     }   
   }
 
-  /* getValue(position indexPos) with the index of the position return the
-   * value of the index position in grid.
-   * @indexPos position used to index
-   * @return value in the index position
-   **/
+  /** getValue(position indexPos) with the index of the position return the
+   *  value of the index position in grid.
+   *  @indexPos position used to index
+   *  @return value in the index position
+   */
   public int getValue(Position indexPos) {
     int col = indexPos.x;
     int row = indexPos.y;
@@ -88,9 +88,9 @@ class Grid {
     }
   }
     
-  /* main function is used to test whether the grid is work or
-   * not. If it works, it will print out the grid we created. If
-   * not, return an error message. 
+  /** main function is used to test whether the grid is work or
+   *  not. If it works, it will print out the grid we created. If
+   *  not, return an error message. 
    */
   public static void main(String[] args) {
 
